@@ -1,12 +1,13 @@
 {
-	"name": "obsidian-sample-plugin",
-	"version": "1.0.0",
-	"description": "This is a sample plugin for Obsidian (https://obsidian.md)",
-	"main": "main.js",
+	"name": "obsidian-exercises",
+	"version": "0.1.0",
+	"description": "Create Interactive Exercises right inside your Obsidian Notes",
+	"main": "./src/main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
 		"build": "tsc -noEmit -skipLibCheck && node esbuild.config.mjs production",
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
+		"version": "node version-bump.mjs && git add manifest.json versions.json",
+		"watch": "nodemon --exec \"npm run build\" -w \".\\src\\*\" -e \"ts,js,json\""
 	},
 	"keywords": [],
 	"author": "",
@@ -19,6 +20,10 @@
 		"esbuild": "0.17.3",
 		"obsidian": "latest",
 		"tslib": "2.4.0",
-		"typescript": "4.7.4"
+		"typescript": "4.7.4",
+		"@types/parsimmon": "^1.10.6",
+		"auto-plugin-obsidian": "^0.1.6",
+		"parsimmon": "^1.18.1",
+		"npm-watch": "^0.11.0"
 	}
 }
