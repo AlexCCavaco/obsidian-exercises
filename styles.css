@@ -1,8 +1,46 @@
-/*
 
-This CSS file will be included with your plugin, and
-available in the app when your plugin is enabled.
+.exercise-block {
+    margin: 10px 0 20px 0;
+}
 
-If your plugin does not need CSS, delete this file.
+.btn-exercise {
+    margin-right: 10px;
+}
 
-*/
+.exercise-row {
+    margin-bottom: 5px;
+}
+
+.exercise-elm {
+    -webkit-app-region: no-drag;
+    height: var(--input-height);
+    font-size: var(--font-ui-small);
+    font-family: inherit;
+    font-weight: var(--input-font-weight);
+    color: var(--text-normal);
+    line-height: var(--line-height-tight);
+    padding: 0 1.9em 0 0.8em;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    box-shadow: var(--input-shadow);
+    border-radius: var(--input-radius);
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: var(--interactive-normal);
+    background-repeat: no-repeat, repeat;
+    background-position: right 0.7em top 50%, 0 0;
+    background-size: 0.65em auto, 100%;margin-bottom: 7px;
+    min-width: 100px;
+    width: 100px;
+    max-width: max-content;
+    border: 1px solid transparent;
+}
+.exercise-elm:hover {
+    box-shadow: var(--input-shadow-hover);
+    background-color: var(--interactive-hover);
+}
+
+.exercise-line {
+    width: 220px;
+}
