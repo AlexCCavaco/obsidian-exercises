@@ -68,6 +68,7 @@ export function getExercise(name:string,elm:HTMLElement,param:string[],flags:FLA
         case 'input':   case 'i': return new InputExercise(elm,param,flags);
         case 'line':    case 'l': return new LineExercise(elm,param,flags);
         //case 'match':   case 'm': return new LineExercise(elm,param,flags);
+        //case 'choice':  case 'c': return new LineExercise(elm,param,flags);
     }
     return null;
 }

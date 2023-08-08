@@ -22,6 +22,7 @@ export default class InputExercise extends Exercise {
     }
 
     reveal(){
+        this.clear();
         if(this.correctOpts[0]) this.elm.value = this.correctOpts[0];
     }
 
