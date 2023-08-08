@@ -1,3 +1,4 @@
+import { FLAGS } from '.';
 import { Exercise } from './Exercise';
 
 export default class InputExercise extends Exercise {
@@ -5,20 +6,19 @@ export default class InputExercise extends Exercise {
     elm: HTMLInputElement;
     correctOpts: string[];
 
-    constructor(elm:HTMLElement,data:string){
-        super('input',elm,data);
-        const vals = data.split(',').map(v=>v.trim());
+    constructor(elm:HTMLElement,param:string[],flags:FLAGS){
+        super('input',elm,flags);
         this.elm.classList.add('exercise-input');
         this.elm.placeholder = '-';
         // <<
         this.correctOpts = [];
-        for(const val of vals) this.correctOpts.push(val);
+        for(const val of param) this.correctOpts.push(val);
     }
 
     validate(){
         const val = this.elm.value;
-        if(this.correctOpts.includes(val)) this.correct();
-        else this.wrong();
+        if(this.correctOpts.includes(val)) return this.correct();
+        else return this.wrong();
     }
 
     reveal(){
