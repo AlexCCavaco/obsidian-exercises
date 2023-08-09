@@ -1,3 +1,4 @@
+import { SWORD, listed, opt, seqMap, string } from 'src/parser';
 import { FLAGS } from '.';
 import { Exercise } from './Exercise';
 
@@ -6,23 +7,24 @@ export default class SelectExercise extends Exercise {
     elm: HTMLSelectElement;
     correctOpts: HTMLOptionElement[];
 
-    constructor(elm:HTMLElement,param:string[],flags:FLAGS){
+    constructor(elm:HTMLElement,dataStr:string,flags:FLAGS){
         super('select',elm,flags);
         this.elm.classList.add('exercise-select');
         // <<
         const first = document.createElement('option');
+        this.elm.appendChild(first);
         first.value = '0';
         first.textContent = '-';
-        this.elm.appendChild(first);
         // <<
+        const data = SelectExercise.parse(dataStr);
         let valCount = 1;
         this.correctOpts = [];
-        for(let val of param){
+        for(const val of data){
             const el = document.createElement('option');
             let correct = false;
-            if(val[0]==='*'){ correct = true; val = val.substring(1); this.correctOpts.push(el); }
+            if(val.correct){ correct = true; this.correctOpts.push(el); }
             el.value = valCount.toString();
-            el.textContent = val;
+            el.textContent = val.value;
             el.setAttribute('data-correct',correct?'1':'0');
             // <<
             valCount++;
@@ -39,6 +41,10 @@ export default class SelectExercise extends Exercise {
     reveal(){
         this.clear();
         if(this.correctOpts[0]) this.elm.value = this.correctOpts[0].value;
+    }
+
+    static parse(data:string):({ correct:boolean,value:string }[]){
+        return listed(seqMap(opt(string('*')),SWORD,(valid,value)=>({ correct:(valid!==null),value }))).tryParse(data);
     }
 
 }

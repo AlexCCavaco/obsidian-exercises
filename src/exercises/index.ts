@@ -2,6 +2,7 @@ import SelectExercise from "./SelectExercise";
 import { Exercise } from "./Exercise";
 import InputExercise from "./InputExercise";
 import LineExercise from "./LineExercise";
+import MatchExercise from "./MatchExercise";
 
 const REPLACE_STRING = '$#rp$';
 
@@ -13,15 +14,14 @@ export default (data:string, elm:HTMLElement)=>{
         const el = elm.createEl('div');
         el.classList.add('exercise-row');
 
-        const processedArgs:{name:string,flags:FLAGS,param:string[]}[] = [];
-        const processedData = row.replace(/\$(\w+)({.*?})*\(((?:.|\))*?)\)/g, (substr,...args)=>{
+        const processedArgs:{name:string,flags:FLAGS,data:string}[] = [];
+        const processedData = row.replace(/\$(\w+)(:.*?)*\{((?:.|\))*?)\}/g, (substr,...args)=>{
             const flagStr = args[1] ?? '';
-            const dataStr = args[2];
+            const data = args[2];
             // <<
             const flags = handleFlags(flagStr);
-            const param = dataStr.split(',').map((v:string)=>v.trim());
 
-            processedArgs.push({ name:args[0],flags,param });
+            processedArgs.push({ name:args[0],flags,data });
             return REPLACE_STRING;
         }).split(REPLACE_STRING);
 
@@ -32,8 +32,8 @@ export default (data:string, elm:HTMLElement)=>{
             el.appendChild(str);
             // <<
             if(!processedArgs[i]) continue;
-            const { name,flags,param } = processedArgs[i];
-            const res = getExercise(name,el,param,flags);
+            const { name,flags,data } = processedArgs[i];
+            const res = getExercise(name,el,data,flags);
             if(res) processOpts.push(res);
         }
     }
@@ -62,13 +62,13 @@ export default (data:string, elm:HTMLElement)=>{
     });
 }
 
-export function getExercise(name:string,elm:HTMLElement,param:string[],flags:FLAGS):Exercise|null {
+export function getExercise(name:string,elm:HTMLElement,dataStr:string,flags:FLAGS):Exercise|null {
     switch(name){
-        case 'select':  case 's': return new SelectExercise(elm,param,flags);
-        case 'input':   case 'i': return new InputExercise(elm,param,flags);
-        case 'line':    case 'l': return new LineExercise(elm,param,flags);
-        //case 'match':   case 'm': return new LineExercise(elm,param,flags);
-        //case 'choice':  case 'c': return new LineExercise(elm,param,flags);
+        case 'select':  case 's': return new SelectExercise(elm,dataStr,flags);
+        case 'input':   case 'i': return new InputExercise(elm,dataStr,flags);
+        case 'line':    case 'l': return new LineExercise(elm,dataStr,flags);
+        case 'match':   case 'm': return new MatchExercise(elm,dataStr,flags);
+        //case 'choice':  case 'c': return new LineExercise(elm,dataStr,flags);
     }
     return null;
 }

@@ -44,3 +44,34 @@
 .exercise-line {
     width: 220px;
 }
+
+.exercise-match {
+    max-width: 500px;
+    margin: auto;
+}
+.exercise-match > * {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+.exercise-match > * > * {
+    display: flex;
+    flex-direction: column;
+}
+.exercise-match > * > * .elm {
+    display: block;
+    margin-bottom: 5px;
+    width: max-content;
+    border: 1px solid transparent;
+}
+.exercise-match > *:first-child > *:first-child .elm,
+.exercise-match > *:last-child > *:last-child .elm {
+    margin-right: auto;
+}
+.exercise-match > *:first-child > *:last-child .elm,
+.exercise-match > *:last-child > *:first-child .elm {
+    margin-left: auto;
+}
+
+.exercise-match > * > * .elm.selected {
+    border-color: rgb(var(--callout-info));
+}
