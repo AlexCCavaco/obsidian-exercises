@@ -1,7 +1,7 @@
 {
 	"name": "obsidian-exercises",
 	"version": "0.1.0",
-	"description": "Create Interactive Exercises right inside your Obsidian Notes",
+	"description": "Create Interactive Exercises along side your Obsidian Notes",
 	"main": "./src/main.js",
 	"scripts": {
 		"dev": "node esbuild.config.mjs",
@@ -10,7 +10,7 @@
 		"watch": "nodemon --exec \"npm run build\" -w \".\\src\\*\" -e \"ts,js,json\""
 	},
 	"keywords": [],
-	"author": "",
+	"author": "Alex C. Cavaco",
 	"license": "MIT",
 	"devDependencies": {
 		"@types/node": "^16.11.6",

@@ -1,9 +1,9 @@
 {
 	"id": "obsidian-exercises",
-	"name": "Obsidian Exercises",
+	"name": "Exercises",
 	"version": "0.1.0",
 	"minAppVersion": "0.15.0",
-	"description": "Create Interactive Exercises right inside your Obsidian Notes.",
+	"description": "Create Interactive Exercises along side your Obsidian Notes",
 	"author": "Alex C. Cavaco",
 	"authorUrl": "https://alexccavaco.com",
 	"fundingUrl": "https://ko-fi.com/alexccavaco",
