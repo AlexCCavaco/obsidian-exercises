@@ -46,4 +46,4 @@ Line is a wider version of input.
 
 Match values from two columns. The matches are defined with "=>" and separated by commas. These values will be **randomized** before being displayed.
 
-<a href='https://ko-fi.com/Z8Z4O0JJS' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
+<a href='https://ko-fi.com/alexccavaco' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
