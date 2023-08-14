@@ -1,34 +1,47 @@
 # Obsidian Exercises
 
-Exercise Types:
-
-- [X] Select
-- [X] Text
-- [ ] [Multi]Selection
-- [ ] Drag and Drop
+Obsidian Exercises was developed as an easy way to create exercises within Obsidian. Whether you are preparing for exams, learning a language, refreshing your memory, or any other purpose, you can now create them alongside your notes.
 
 ## Select
 
->$select[optA,...optB]
+![Match Exercise](assets/select-exercise.gif)
 
-Select option from a droplist. Options are defined within the brackets and seperated by commas. A value preceded by an asterix (*) is a correct value. The system allows multiple correct values, but only one is shown on reveal.
+**Note:** The Options Menu is not showing on the image above.
 
-Ex: $select(option A, *option B, option C, option D)
+>$select{"option1", "option2" [, …]}
+
+Select option from a drop list. Options are separated by commas, but consider always using quotations. For multi word values (that contain spaces) they are necessary. Options are **randomized** before being displayed.
+
+To define a **correct options** you can simply prepend the option with an asterisk (for example: \*"option").
+
+Example — $select{"option1", \*"option2", "option3", "option4"}
 
 In the example above there are 4 options and option 2 is the correct one.
 
+You can define **multiple correct options** and they will all be evaluated. When revealing options, the first in the list will be the one shown.
+
 ## Input
 
->$input[optA,...optB]
+![Match Exercise](assets/input-exercise.gif)
 
-Input Text into a textbox. Within the brackets the correct options are defined, seperated by a comma.
+>$input{"option1", "option2" [, …]}
 
-Ex: $input(correct text)
+Input Text into a textbox. The options are evaluated as they are written. You can write **one or more options**, they will all be evaluated, but only the first is shown on reveal.
 
-In the example above the correct input is "correct text".
+Example — $input("Correct Text.")
+
+In the example above the correct input is "Correct Text.".
 
 ## Line
 
->$line[optA,...optB]
+>$line{"option1", "option2" [, …]}
 
 Line is a wider version of input.
+
+## Match
+
+![Match Exercise](assets/match-exercise.gif)
+
+>$match{"option1"=>"value1", "option2"=>"value2" [, …]}
+
+Match values from two columns. The matches are defined with "=>" and separated by commas. These values will be **randomized** before being displayed.
