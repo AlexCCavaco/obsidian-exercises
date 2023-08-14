@@ -1,6 +1,7 @@
 import { SWORD, listed, opt, seqMap, string } from 'src/parser';
 import { FLAGS } from '.';
 import { Exercise } from './Exercise';
+import { randomizeArray } from 'src/tools/sorting';
 
 export default class SelectExercise extends Exercise {
 
@@ -19,7 +20,7 @@ export default class SelectExercise extends Exercise {
         const data = SelectExercise.parse(dataStr);
         let valCount = 1;
         this.correctOpts = [];
-        for(const val of data){
+        for(const val of randomizeArray(data)){
             const el = document.createElement('option');
             let correct = false;
             if(val.correct){ correct = true; this.correctOpts.push(el); }
