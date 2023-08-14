@@ -56,8 +56,11 @@ export default (data:string, elm:HTMLElement)=>{
         validTxt.innerHTML = '';
     });
     btnCheck.addEventListener('click',()=>{
-        let valid = 0; const length = processOpts.length;
-        for(const opt of processOpts) if(opt.validate()) valid++;
+        let valid = 0; let length = 0;
+        for(const opt of processOpts){
+            valid+= opt.validate();
+            length+= opt.length;
+        }
         validTxt.innerHTML = '<b>' + valid + '</b>/' + length + ' (' + Math.round(valid*100 / length) + '%)';
     });
 }

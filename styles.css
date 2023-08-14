@@ -56,12 +56,15 @@
 .exercise-match > * > * {
     display: flex;
     flex-direction: column;
+    box-sizing: border-box;
+    padding: 0 10px;
 }
 .exercise-match > * > * .elm {
     display: block;
     margin-bottom: 5px;
     width: max-content;
     border: 1px solid transparent;
+    font-weight: bold;
 }
 .exercise-match > *:first-child > *:first-child .elm,
 .exercise-match > *:last-child > *:last-child .elm {
@@ -70,6 +73,12 @@
 .exercise-match > *:first-child > *:last-child .elm,
 .exercise-match > *:last-child > *:first-child .elm {
     margin-left: auto;
+}
+
+.exercise-match > *:last-child > *:first-child .elm,
+.exercise-match > *:last-child > *:last-child .elm {
+    background-color: rgb(var(--callout-info));
+    color: #222222;
 }
 
 .exercise-match > * > * .elm.selected {

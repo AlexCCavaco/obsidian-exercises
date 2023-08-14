@@ -1,6 +1,9 @@
 import { SWORD, keyed, listed, seqMap, string } from 'src/parser';
 import { FLAGS } from '.';
 import { Exercise } from './Exercise';
+import { randomizeArray } from 'src/tools/sorting';
+
+export type MatchElm = { elm:HTMLButtonElement,link:MatchElm|null,right:boolean,value:string,correctElm:MatchElm|null };
 
 export default class MatchExercise extends Exercise {
 
@@ -12,8 +15,10 @@ export default class MatchExercise extends Exercise {
     lbSec: HTMLElement;
     rbSec: HTMLElement;
     // <<
-    leftSelected:HTMLButtonElement|null;
-    rightSelected:HTMLButtonElement|null;
+    leftSelected:  MatchElm|null;
+    leftElms: MatchElm[];
+    rightSelected: MatchElm|null;
+    rightElms: MatchElm[];
 
     constructor(elm:HTMLElement,dataStr:string,flags:FLAGS){
         super('div',elm,flags);
@@ -21,7 +26,9 @@ export default class MatchExercise extends Exercise {
         this.elm.classList.remove('exercise-elm');
         // <<
         this.leftSelected = null;
+        this.leftElms = [];
         this.rightSelected = null;
+        this.rightElms = [];
         // <<
         const top = document.createElement('div');
         /**/ this.elm.appendChild(top);
@@ -37,59 +44,81 @@ export default class MatchExercise extends Exercise {
         /**/ bot.appendChild(this.rbSec);
         // <<
         const data = MatchExercise.parse(dataStr);
+        this.length = 0;
         this.correctOpts = {};
         for(const [val1,val2] of data){
             this.correctOpts[val1] = val2;
-            const lElm = this.createElm(this.ltSec,val1);
-            const rElm = this.createElm(this.rtSec,val2);
-            lElm.addEventListener('click',()=>this.elmClick(lElm,false));
-            rElm.addEventListener('click',()=>this.elmClick(rElm,true));
+            const lElm = this.createElm(val1,false); this.leftElms.push(lElm);
+            const rElm = this.createElm(val2,true); this.rightElms.push(rElm);
+            lElm.correctElm = rElm; rElm.correctElm = lElm;
+            lElm.elm.addEventListener('click',()=>this.elmClick(lElm,false));
+            rElm.elm.addEventListener('click',()=>this.elmClick(rElm,true));
+            this.length++;
         }
+        for(const {elm} of randomizeArray(this.leftElms)) this.ltSec.appendChild(elm);
+        for(const {elm} of randomizeArray(this.rightElms)) this.rtSec.appendChild(elm);
     }
 
-    validate(){//TODO
-        // const val = this.elm.value;
-        // if(this.correctOpts.includes(val)) return this.correct();
-        // else return this.wrong();
-        return true;
+    validate(){
+        let correct = 0;
+        for(const matchElm of this.leftElms){
+            if(!matchElm.correctElm) continue;
+            if(!matchElm.link || matchElm.correctElm.value!==matchElm.link.value){
+                this.wrong(matchElm.elm);
+                this.wrong(matchElm.correctElm.elm);
+                continue;
+            }
+            correct++;
+            this.correct(matchElm.elm);
+            this.correct(matchElm.correctElm.elm);
+        }
+        return correct;
     }
 
-    reveal(){//TODO
-        // this.clear();
-        // if(this.correctOpts[0]) this.elm.value = this.correctOpts[0];
+    reveal(){
+        for(const matchElm of this.leftElms){
+            this.clear(matchElm.elm);
+            this.leftSelected = matchElm;
+            this.rightSelected = matchElm.correctElm;
+            this.elmGroup();
+        }
+        for(const matchElm of this.rightElms){
+            this.clear(matchElm.elm);
+        }
     }
 
     static parse(data:string):[string,string][]{
         return listed(seqMap(SWORD,keyed(string('=>')),SWORD,(v1,_,v2):[string,string]=>([v1,v2]))).tryParse(data);
     }
 
-    private createElm(parent:HTMLElement,content:string){
+    private createElm(content:string,right=false):MatchElm{
         const elm = document.createElement('button');
-        parent.appendChild(elm);
+        (right ? this.rtSec : this.ltSec).appendChild(elm);
         elm.classList.add('elm');
         elm.textContent = content;
-        return elm;
+        return { elm,link:null,right,value:content,correctElm:null };
     }
 
-    private elmClick(elm:HTMLButtonElement,right=false){
+    private elmClick(matchElm:MatchElm,right=false){
+        if(matchElm.link) return this.elmUngroup(matchElm);
         const group = (right&&this.leftSelected) || this.rightSelected;
-        this.elmSelect(elm,right);
+        this.elmSelect(matchElm,right);
         if(group) this.elmGroup();
     }
 
-    private elmSelect(elm:HTMLButtonElement,right=false){
-        elm.classList.add('selected');
+    private elmSelect(matchElm:MatchElm,right=false){
+        matchElm.elm.classList.add('selected');
         if(right){
             this.elmClearClasses(this.rightSelected);
-            this.rightSelected = elm;
+            this.rightSelected = matchElm;
         } else {
             this.elmClearClasses(this.leftSelected);
-            this.leftSelected = elm;
+            this.leftSelected = matchElm;
         }
     }
-    private elmClearClasses(elm:HTMLElement|null){
-        if(!elm) return;
-        elm.classList.remove('selected');
+    private elmClearClasses(matchElm:MatchElm|null){
+        if(!matchElm) return;
+        matchElm.elm.classList.remove('selected');
     }
     private elmClear(right:boolean|null=null){
         if(right===true){ this.elmClearClasses(this.rightSelected); this.rightSelected = null; }
@@ -98,10 +127,23 @@ export default class MatchExercise extends Exercise {
     }
     private elmGroup(){
         if(!this.leftSelected || !this.rightSelected) return;
-        this.lbSec.appendChild(this.leftSelected);
-        this.rbSec.appendChild(this.rightSelected);
+        this.lbSec.appendChild(this.leftSelected.elm);
+        this.rbSec.appendChild(this.rightSelected.elm);
+        this.leftSelected.link = this.rightSelected;
+        this.rightSelected.link = this.leftSelected;
         this.elmClear();
     }
-    private elmUngroup(elm:HTMLButtonElement,elm2:HTMLButtonElement){}    
+    private elmUngroup(matchElm:MatchElm){
+        if(!matchElm.link) return;
+        if(matchElm.right){
+            this.rtSec.appendChild(matchElm.elm);
+            this.ltSec.appendChild(matchElm.link.elm);
+        } else {
+            this.ltSec.appendChild(matchElm.elm);
+            this.rtSec.appendChild(matchElm.link.elm);
+        }
+        matchElm.link.link = null;
+        matchElm.link = null;
+    }    
 
 }
