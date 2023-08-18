@@ -49,11 +49,11 @@ export default (data:string, elm:HTMLElement)=>{
     btns.appendChild(btnCheck); btnCheck.textContent = 'Check';
     const validTxt = document.createElement('span');
     validTxt.classList.add('valid-text');
-    btns.appendChild(validTxt); validTxt.innerHTML = '';
+    btns.appendChild(validTxt); validTxt.textContent = '';
     // <<
     btnReveal.addEventListener('click',()=>{
         for(const opt of processOpts) opt.reveal();
-        validTxt.innerHTML = '';
+        validTxt.textContent = '';
     });
     btnCheck.addEventListener('click',()=>{
         let valid = 0; let length = 0;
@@ -61,7 +61,11 @@ export default (data:string, elm:HTMLElement)=>{
             valid+= opt.validate();
             length+= opt.length;
         }
-        validTxt.innerHTML = '<b>' + valid + '</b>/' + length + ' (' + Math.round(valid*100 / length) + '%)';
+        validTxt.textContent = '';
+        const vTxtValue = validTxt.createEl('b');
+        /*/*/ vTxtValue.textContent = valid.toString();
+        const vTxtInfo = validTxt.createEl('span');
+        /*/*/ vTxtInfo.textContent = '/' + length + ' (' + Math.round(valid*100 / length) + '%)';
     });
 }
 

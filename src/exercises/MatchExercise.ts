@@ -51,6 +51,8 @@ export default class MatchExercise extends Exercise {
             const lElm = this.createElm(val1,false); this.leftElms.push(lElm);
             const rElm = this.createElm(val2,true); this.rightElms.push(rElm);
             lElm.correctElm = rElm; rElm.correctElm = lElm;
+            lElm.elm.classList.add('exercise-elm');
+            rElm.elm.classList.add('exercise-elm');
             lElm.elm.addEventListener('click',()=>this.elmClick(lElm,false));
             rElm.elm.addEventListener('click',()=>this.elmClick(rElm,true));
             this.length++;
@@ -142,6 +144,8 @@ export default class MatchExercise extends Exercise {
             this.ltSec.appendChild(matchElm.elm);
             this.rtSec.appendChild(matchElm.link.elm);
         }
+        this.clear(matchElm.elm);
+        this.clear(matchElm.link.elm);
         matchElm.link.link = null;
         matchElm.link = null;
     }    

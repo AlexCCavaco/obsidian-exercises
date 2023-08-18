@@ -21,18 +21,21 @@ export abstract class Exercise {
 
     correct(specificElm:HTMLElement|null=null):number {
         if(!specificElm) specificElm = this.elm;
-        specificElm.style.borderColor = 'rgb(var(--callout-success))';
+        specificElm.classList.add('res-correct');
+        specificElm.classList.remove('res-wrong');
         return 1;
     }
     wrong(specificElm:HTMLElement|null=null):0 {
         if(!specificElm) specificElm = this.elm;
-        specificElm.style.borderColor = 'rgb(var(--callout-fail))';
+        specificElm.classList.remove('res-correct');
+        specificElm.classList.add('res-wrong');
         return 0;
     }
 
     clear(specificElm:HTMLElement|null=null){
         if(!specificElm) specificElm = this.elm;
-        specificElm.style.borderColor = '#222222';
+        specificElm.classList.remove('res-correct');
+        specificElm.classList.remove('res-wrong');
     }
     
 }

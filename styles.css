@@ -36,6 +36,12 @@
     max-width: max-content;
     border: 1px solid transparent;
 }
+.exercise-elm.res-correct {
+    border-color: var(--color-green);
+}
+.exercise-elm.res-wrong {
+    border-color: var(--color-red);
+}
 .exercise-elm:hover {
     box-shadow: var(--input-shadow-hover);
     background-color: var(--interactive-hover);
@@ -60,10 +66,11 @@
     padding: 0 10px;
 }
 .exercise-match > * > * .elm {
+    padding: 0 1em;
     display: block;
     margin-bottom: 5px;
     width: max-content;
-    border: 1px solid transparent;
+    min-width: auto;
     font-weight: bold;
 }
 .exercise-match > *:first-child > *:first-child .elm,
@@ -77,10 +84,10 @@
 
 .exercise-match > *:last-child > *:first-child .elm,
 .exercise-match > *:last-child > *:last-child .elm {
-    background-color: rgb(var(--callout-info));
+    background-color: var(--color-blue);
     color: #222222;
 }
 
 .exercise-match > * > * .elm.selected {
-    border-color: rgb(var(--callout-info));
+    border-color: var(--color-cyan);
 }
