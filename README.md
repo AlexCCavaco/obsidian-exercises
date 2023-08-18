@@ -2,6 +2,12 @@
 
 Obsidian Exercises was developed as an easy way to create exercises within Obsidian. Whether you are preparing for exams, learning a language, refreshing your memory, or any other purpose, you can now create them alongside your notes.
 
+This plugin uses a block component as a base. Within it you can define normal text and the exercises element below. Example:
+
+>\```exercise
+>$match{Ich=>I, Wie=>We, Er=>He, Es=>It, Sie=>She}
+>\```
+
 ## Select
 
 ![Match Exercise](assets/select-exercise.gif)
