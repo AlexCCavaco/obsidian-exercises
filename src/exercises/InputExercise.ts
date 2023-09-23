@@ -1,4 +1,4 @@
-import { SWORD, listed } from 'src/parser';
+import { SWORD, listed, sided } from 'src/parser';
 import { FLAGS } from '.';
 import { Exercise } from './Exercise';
 
@@ -29,7 +29,7 @@ export default class InputExercise extends Exercise {
     }
 
     static parse(data:string){
-        return listed(SWORD).tryParse(data);
+        return listed(sided(SWORD)).tryParse(data);
     }
 
 }

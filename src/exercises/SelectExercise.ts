@@ -1,4 +1,4 @@
-import { SWORD, listed, opt, seqMap, string } from 'src/parser';
+import { OPTW_EOF, SWORD, listed, opt, seqMap, string } from 'src/parser';
 import { FLAGS } from '.';
 import { Exercise } from './Exercise';
 import { randomizeArray } from 'src/tools/sorting';
@@ -17,7 +17,7 @@ export default class SelectExercise extends Exercise {
         first.value = '0';
         first.textContent = '-';
         // <<
-        const data = SelectExercise.parse(dataStr);
+        const data = SelectExercise.parse(dataStr);console.log(data)
         let valCount = 1;
         this.correctOpts = [];
         for(const val of randomizeArray(data)){
@@ -45,7 +45,7 @@ export default class SelectExercise extends Exercise {
     }
 
     static parse(data:string):({ correct:boolean,value:string }[]){
-        return listed(seqMap(opt(string('*')),SWORD,(valid,value)=>({ correct:(valid!==null),value }))).tryParse(data);
+        return listed(seqMap(OPTW_EOF,opt(string('*')),SWORD,(_,valid,value)=>({ correct:(valid!==null),value }))).tryParse(data);
     }
 
 }

@@ -19,8 +19,9 @@ export default (data:string, elm:HTMLElement)=>{
 
         processedArgs.push({ name:args[0],flags,data });
         return REPLACE_STRING;
-    }).split('\n').map(row=>row.split(REPLACE_STRING));console.log(processedData);
+    }).split('\n').map(row=>row.split(REPLACE_STRING));
 
+    let pos = 0;
     for(let i = 0; i < processedData.length; i++){
         const rowData = processedData[i];
         const el = elm.createEl('div');
@@ -32,8 +33,9 @@ export default (data:string, elm:HTMLElement)=>{
             str.textContent = dataElm;
             el.appendChild(str);
             // <<
-            if(!processedArgs[i]) continue;
-            const { name,flags,data } = processedArgs[i];
+            if(j+1===rowData.length) continue;
+            if(!processedArgs[pos]) continue;
+            const { name,flags,data } = processedArgs[pos++];
             const res = getExercise(name,el,data,flags);
             if(res) processOpts.push(res);
         }

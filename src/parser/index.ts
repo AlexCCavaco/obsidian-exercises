@@ -1,6 +1,6 @@
 import { string, optWhitespace, regex, alt, Parser, seq, seqMap, lazy, whitespace, eof } from "parsimmon";
 
-export { string,regex,alt,seq,seqMap };
+export { string, regex, alt, seq, seqMap };
 
 export type VAL_TYPE = { type:string,value:unknown } & (
     { type:'array',value:unknown[] } |
@@ -16,6 +16,7 @@ export const OPTW_EOF   = optWhitespace.or(eof);
 export const keyed      = <T>(parser:Parser<T>):Parser<T>=>parser.skip(OPTW_EOF);
 export const listed     = <T>(parser:Parser<T>,seperator=','):Parser<T[]>=>parser.sepBy(string(seperator).skip(optWhitespace));
 export const opt        = <T>(parser:Parser<T>):Parser<T|null>=>parser.times(0,1).map(res=>(res.length===0 ? null : res[0]));
+export const sided      = <T>(parser:Parser<T>):Parser<T>=>optWhitespace.then(parser).skip(optWhitespace);
 
 export const NUMBER     = keyed(regex(/\d+/)).map(parseInt);
 export const DECIMAL    = keyed(regex(/\d+\.\d+/)).map(parseFloat);

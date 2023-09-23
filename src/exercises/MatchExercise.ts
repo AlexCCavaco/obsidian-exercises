@@ -1,4 +1,4 @@
-import { SWORD, keyed, listed, seqMap, string } from 'src/parser';
+import { SWORD, keyed, listed, seqMap, sided, string } from 'src/parser';
 import { FLAGS } from '.';
 import { Exercise } from './Exercise';
 import { randomizeArray } from 'src/tools/sorting';
@@ -90,7 +90,7 @@ export default class MatchExercise extends Exercise {
     }
 
     static parse(data:string):[string,string][]{
-        return listed(seqMap(SWORD,keyed(string('=>')),SWORD,(v1,_,v2):[string,string]=>([v1,v2]))).tryParse(data);
+        return listed(seqMap(sided(SWORD),keyed(string('=>')),sided(SWORD),(v1,_,v2):[string,string]=>([v1,v2]))).tryParse(data);
     }
 
     private createElm(content:string,right=false):MatchElm{
