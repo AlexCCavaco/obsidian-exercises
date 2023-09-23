@@ -3,10 +3,11 @@ import { Exercise } from "./Exercise";
 import InputExercise from "./InputExercise";
 import LineExercise from "./LineExercise";
 import MatchExercise from "./MatchExercise";
+import { App, Component, MarkdownPostProcessorContext, MarkdownRenderer } from "obsidian";
 
 const REPLACE_STRING = '$#rp$';
 
-export default (data:string, elm:HTMLElement)=>{
+export default (app:App, data:string, elm:HTMLElement, ctx:MarkdownPostProcessorContext)=>{
     elm.classList.add('exercise-block');
     const processOpts:Exercise[] = [];
 
@@ -29,9 +30,7 @@ export default (data:string, elm:HTMLElement)=>{
 
         for(let j = 0; j < rowData.length; j++){
             const dataElm = rowData[j];
-            const str = document.createElement('span');
-            str.textContent = dataElm;
-            el.appendChild(str);
+            MarkdownRenderer.render(app,dataElm,el,ctx.sourcePath,new Component());
             // <<
             if(j+1===rowData.length) continue;
             if(!processedArgs[pos]) continue;
