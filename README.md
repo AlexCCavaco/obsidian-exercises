@@ -58,7 +58,7 @@ Match values from two columns. The matches are defined with "=>" and separated b
 
 >$choice{"option1", *"option2" [, …]}
 
-Choose one or more options from the multiple choice box. Options are separated by commas, but consider always using quotations. For multi word values (that contain spaces) they are necessary. They are required for multi-word values (containing spaces). Options are **randomized** before being displayed.
+Choose one or more options from the multiple choice box. Options are separated by commas, but consider always using quotations. They are required for multi-word values (containing spaces). Options are **randomized** before being displayed.
 
 To define a **correct option** you can simply prepend the option with an asterisk (for example: \*"option").
 
