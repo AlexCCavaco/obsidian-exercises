@@ -18,7 +18,7 @@ This plugin uses a block component as a base. Within it, you can define normal t
 
 Select an option from a drop list. Options are separated by commas, but consider always using quotations. For multi word values (that contain spaces) they are necessary. Options are **randomized** before being displayed.
 
-To define a **correct options** you can simply prepend the option with an asterisk (for example: \*"option").
+To define a **correct option** you can simply prepend the option with an asterisk (for example: \*"option").
 
 Example — $select{"option1", \*"option2", "option3", "option4"}
 
@@ -52,9 +52,23 @@ Line is a wider version of input.
 
 Match values from two columns. The matches are defined with "=>" and separated by commas. These values will be **randomized** before being displayed.
 
+## Choice
+
+![Match Exercise](assets/choice-exercise.gif)
+
+>$choice{"option1", *"option2" [, …]}
+
+Choose one or more options from the multiple choice box. Options are separated by commas, but consider always using quotations. For multi word values (that contain spaces) they are necessary. They are required for multi-word values (containing spaces). Options are **randomized** before being displayed.
+
+To define a **correct option** you can simply prepend the option with an asterisk (for example: \*"option").
+
+Example — $choice{"option1", \*"option2", "option3", \*"option4"}
+
+In the above example there are 4 options and option 2 and option 4 are correct. Both must be selected for it to be considered correct.
+
 # Thanks
 
-Thanks to [@Raboro](https://github.com/Raboro) for fixing some typos
+[@Raboro](https://github.com/Raboro) for fixing some typos
 
 # Support
 

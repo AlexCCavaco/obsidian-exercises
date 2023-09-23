@@ -21,7 +21,7 @@
     font-family: inherit;
     font-weight: var(--input-font-weight);
     color: var(--text-normal);
-    line-height: var(--line-height-tight);
+    line-height: 30px;
     padding: 0 1.9em 0 0.8em;
     max-width: 100%;
     box-sizing: border-box;
@@ -37,7 +37,8 @@
     min-width: 100px;
     width: 100px;
     max-width: max-content;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
+    box-sizing: border-box;
 }
 .exercise-elm.res-correct {
     border-color: var(--color-green);
@@ -93,4 +94,18 @@
 
 .exercise-match > * > * .elm.selected {
     border-color: var(--color-cyan);
+}
+
+.exercise-choice > .elm {
+    width: 100%;
+    min-width: 100%;
+}
+.exercise-choice > .elm:hover {
+    cursor: pointer;
+}
+
+.exercise-choice > .elm.selected {
+    background-color: #90a9b8;
+    color: #222222;
+    font-weight: bold;
 }

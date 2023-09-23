@@ -4,6 +4,7 @@ import InputExercise from "./InputExercise";
 import LineExercise from "./LineExercise";
 import MatchExercise from "./MatchExercise";
 import { App, Component, MarkdownPostProcessorContext, MarkdownRenderer } from "obsidian";
+import MultipleChoiceExercise from "./MultipleChoiceExercise";
 
 const REPLACE_STRING = '$#rp$';
 
@@ -77,7 +78,7 @@ export function getExercise(name:string,elm:HTMLElement,dataStr:string,flags:FLA
         case 'input':   case 'i': return new InputExercise(elm,dataStr,flags);
         case 'line':    case 'l': return new LineExercise(elm,dataStr,flags);
         case 'match':   case 'm': return new MatchExercise(elm,dataStr,flags);
-        //case 'choice':  case 'c': return new LineExercise(elm,dataStr,flags);
+        case 'choice':  case 'c': return new MultipleChoiceExercise(elm,dataStr,flags);
     }
     return null;
 }
