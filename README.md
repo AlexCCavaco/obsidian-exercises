@@ -64,7 +64,7 @@ To define a **correct option** you can simply prepend the option with an asteris
 
 Example — $choice{"option1", \*"option2", "option3", \*"option4"}
 
-In the above example there are 4 options and option 2 and option 4 are correct. Both must be selected for it to be considered correct.
+In the example above, there are 4 options, option 2 and option 4 are correct. All correct options and no incorrect options must be selected for the answer to be considered correct.
 
 # Thanks
 
