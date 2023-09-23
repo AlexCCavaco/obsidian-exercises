@@ -8,25 +8,26 @@ const REPLACE_STRING = '$#rp$';
 
 export default (data:string, elm:HTMLElement)=>{
     elm.classList.add('exercise-block');
-    const rows = data.split('\n');
     const processOpts:Exercise[] = [];
-    for(const row of rows){
+
+    const processedArgs:{name:string,flags:FLAGS,data:string}[] = [];
+    const processedData = data.replace(/\$(\w+)(:(?:.|\n)*?)*\{((?:.|\n|\))*?)\}/g, (substr,...args)=>{
+        const flagStr = args[1] ?? '';
+        const data = args[2].toString().trim();
+        // <<
+        const flags = handleFlags(flagStr);
+
+        processedArgs.push({ name:args[0],flags,data });
+        return REPLACE_STRING;
+    }).split('\n').map(row=>row.split(REPLACE_STRING));console.log(processedData);
+
+    for(let i = 0; i < processedData.length; i++){
+        const rowData = processedData[i];
         const el = elm.createEl('div');
         el.classList.add('exercise-row');
 
-        const processedArgs:{name:string,flags:FLAGS,data:string}[] = [];
-        const processedData = row.replace(/\$(\w+)(:.*?)*\{((?:.|\))*?)\}/g, (substr,...args)=>{
-            const flagStr = args[1] ?? '';
-            const data = args[2];
-            // <<
-            const flags = handleFlags(flagStr);
-
-            processedArgs.push({ name:args[0],flags,data });
-            return REPLACE_STRING;
-        }).split(REPLACE_STRING);
-
-        for(let i = 0; i < processedData.length; i++){
-            const dataElm = processedData[i];
+        for(let j = 0; j < rowData.length; j++){
+            const dataElm = rowData[j];
             const str = document.createElement('span');
             str.textContent = dataElm;
             el.appendChild(str);
