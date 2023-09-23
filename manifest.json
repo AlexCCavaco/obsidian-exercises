@@ -1,7 +1,7 @@
 {
 	"id": "exercises",
 	"name": "Exercises",
-	"version": "0.1.1",
+	"version": "0.1.2",
 	"minAppVersion": "0.15.0",
 	"description": "Create Interactive Exercises along side your Obsidian Notes",
 	"author": "AlexCCavaco",
