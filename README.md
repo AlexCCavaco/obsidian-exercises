@@ -2,7 +2,7 @@
 
 Obsidian Exercises was developed as an easy way to create exercises within Obsidian. Whether you are preparing for exams, learning a language, refreshing your memory, or any other purpose, you can now create them alongside your notes.
 
-This plugin uses a block component as a base. Within it you can define normal text and the exercises element below. Example:
+This plugin uses a block component as a base. Within it, you can define normal text and the exercise element below. Example:
 
 > \```exercise
 > <br/>$match{Ich=>I, Wie=>We, Er=>He, Es=>It, Sie=>She}
@@ -12,17 +12,17 @@ This plugin uses a block component as a base. Within it you can define normal te
 
 ![Match Exercise](assets/select-exercise.gif)
 
-**Note:** The Options Menu is not showing on the image above.
+**Note:** The Options Menu is not showing in the image above.
 
 >$select{"option1", "option2" [, …]}
 
-Select option from a drop list. Options are separated by commas, but consider always using quotations. For multi word values (that contain spaces) they are necessary. Options are **randomized** before being displayed.
+Select an option from a drop list. Options are separated by commas, but consider always using quotations. For multi word values (that contain spaces) they are necessary. Options are **randomized** before being displayed.
 
 To define a **correct options** you can simply prepend the option with an asterisk (for example: \*"option").
 
 Example — $select{"option1", \*"option2", "option3", "option4"}
 
-In the example above there are 4 options and option 2 is the correct one.
+In the example above, there are 4 options and option 2 is the correct one.
 
 You can define **multiple correct options** and they will all be evaluated. When revealing options, the first in the list will be the one shown.
 
@@ -51,5 +51,11 @@ Line is a wider version of input.
 >$match{"option1"=>"value1", "option2"=>"value2" [, …]}
 
 Match values from two columns. The matches are defined with "=>" and separated by commas. These values will be **randomized** before being displayed.
+
+# Thanks
+
+Thanks to [@Raboro](https://github.com/Raboro) for fixing some typos
+
+# Support
 
 <a href='https://ko-fi.com/alexccavaco' target='_blank'><img height='36' style='border:0px;height:36px;' src='https://storage.ko-fi.com/cdn/kofi2.png?v=3' border='0' alt='Buy Me a Coffee at ko-fi.com' /></a>
