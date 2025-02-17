@@ -1,111 +1,112 @@
-
 .exercise-block {
-    margin: 10px 0 20px 0;
+	margin: 10px 0 20px 0;
 }
 
 .btn-exercise {
-    margin-right: 10px;
+	margin-right: 10px;
 }
 
 .exercise-row {
-    margin-bottom: 5px;
+	margin-bottom: 5px;
 }
 .exercise-row > p {
-    display: inline;
+	display: inline;
 }
 
 .exercise-elm {
-    -webkit-app-region: no-drag;
-    height: var(--input-height);
-    font-size: var(--font-ui-small);
-    font-family: inherit;
-    font-weight: var(--input-font-weight);
-    color: var(--text-normal);
-    line-height: 30px;
-    padding: 0 1.9em 0 0.8em;
-    max-width: 100%;
-    box-sizing: border-box;
-    margin: 0;
-    box-shadow: var(--input-shadow);
-    border-radius: var(--input-radius);
-    -webkit-appearance: none;
-    appearance: none;
-    background-color: var(--interactive-normal);
-    background-repeat: no-repeat, repeat;
-    background-position: right 0.7em top 50%, 0 0;
-    background-size: 0.65em auto, 100%;margin-bottom: 7px;
-    min-width: 100px;
-    width: 100px;
-    max-width: max-content;
-    border: 2px solid transparent;
-    box-sizing: border-box;
+	-webkit-app-region: no-drag;
+	font-size: var(--font-ui-small);
+	font-family: inherit;
+	font-weight: var(--input-font-weight);
+	color: var(--text-normal);
+	max-width: 100%;
+	box-sizing: border-box;
+	margin: 0;
+	box-shadow: var(--input-shadow);
+	border-radius: var(--input-radius);
+	-webkit-appearance: none;
+	appearance: none;
+	background-color: var(--interactive-normal);
+	background-repeat: no-repeat, repeat;
+	background-position: right 0.7em top 50%, 0 0;
+	background-size: 0.65em auto, 100%;
+	margin-bottom: 7px;
+	min-width: 100px;
+	width: 100px;
+	max-width: max-content;
+	border: 2px solid transparent;
+	box-sizing: border-box;
+	min-height: var(--input-height);
+	height: auto;
+	line-height: inherit;
+	padding: 0.5em 1.9em 0.5em 0.8em;
 }
 .exercise-elm.res-correct {
-    border-color: var(--color-green);
+	border-color: var(--color-green);
 }
 .exercise-elm.res-wrong {
-    border-color: var(--color-red);
+	border-color: var(--color-red);
 }
 .exercise-elm:hover {
-    box-shadow: var(--input-shadow-hover);
-    background-color: var(--interactive-hover);
+	box-shadow: var(--input-shadow-hover);
+	background-color: var(--interactive-hover);
 }
 
 .exercise-line {
-    width: 220px;
+	width: 220px;
 }
 
 .exercise-match {
-    max-width: 500px;
-    margin: auto;
+	max-width: 500px;
+	margin: auto;
 }
 .exercise-match > * {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 }
 .exercise-match > * > * {
-    display: flex;
-    flex-direction: column;
-    box-sizing: border-box;
-    padding: 0 10px;
+	display: flex;
+	flex-direction: column;
+	box-sizing: border-box;
+	padding: 0 10px;
 }
 .exercise-match > * > * .elm {
-    padding: 0 1em;
-    display: block;
-    margin-bottom: 5px;
-    width: max-content;
-    min-width: auto;
-    font-weight: bold;
+	padding: 0 1em;
+	display: block;
+	margin-bottom: 5px;
+	width: max-content;
+	min-width: auto;
+	font-weight: bold;
 }
 .exercise-match > *:first-child > *:first-child .elm,
 .exercise-match > *:last-child > *:last-child .elm {
-    margin-right: auto;
+	margin-right: auto;
 }
 .exercise-match > *:first-child > *:last-child .elm,
 .exercise-match > *:last-child > *:first-child .elm {
-    margin-left: auto;
+	margin-left: auto;
 }
 
 .exercise-match > *:last-child > *:first-child .elm,
 .exercise-match > *:last-child > *:last-child .elm {
-    background-color: var(--color-blue);
-    color: #222222;
+	background-color: var(--color-blue);
+	color: #222222;
 }
 
 .exercise-match > * > * .elm.selected {
-    border-color: var(--color-cyan);
+	border-color: var(--color-cyan);
 }
 
 .exercise-choice > .elm {
-    width: 100%;
-    min-width: 100%;
+	width: 100%;
+	min-width: 100%;
 }
 .exercise-choice > .elm:hover {
-    cursor: pointer;
+	cursor: pointer;
 }
 
 .exercise-choice > .elm.selected {
-    background-color: #90a9b8;
-    color: #222222;
-    font-weight: bold;
+	background-color: #90a9b8;
+	color: #222222;
+	font-weight: bold;
 }
